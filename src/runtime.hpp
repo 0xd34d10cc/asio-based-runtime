@@ -78,7 +78,7 @@ class Runtime {
 
         std::weak_ptr<TaskQueue> self = shared_from_this();
         auto handler = [t = std::move(timer), f = std::move(task),
-                        s = std::move(self)](const auto& ec) {
+                        s = std::move(self)](const auto& ec) mutable {
           if (ec) {
             // operation aborted
             return;
